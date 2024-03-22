@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "389121209855",
+    "project_id": "mesibo-sample",
+    "storage_bucket": "mesibo-sample.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:389121209855:android:b8e1bc4675992396e723ca",
+        "android_client_info": {
+          "package_name": "com.yoliday.experience"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADxQt0oS1ynItNDlyAgj0vqZC16kvWAKY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
