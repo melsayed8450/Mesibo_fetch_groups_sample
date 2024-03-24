@@ -201,31 +201,40 @@ class _HomeWidgetState extends State<HomeWidget>
                           border: Border.all(color: Colors.grey),
                         ),
                         child: ListTile(
-                          leading: CircleAvatar(
-                            child: Text(remoteProfile?.name?[0] ?? 'N'),
-                          ),
-                          title: Text(
-                            remoteProfile?.name ?? 'No name',
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          subtitle: Builder(builder: (context) {
-                            MesiboMessage lastMessage =
-                                Provider.of<MessagesProvider>(context,
-                                        listen: false)
-                                    .messages
-                                    .last;
-                            return Text(
-                              '${lastMessage.isIncoming() ? remoteProfile?.name ?? 'No name' : 'You'}: ${lastMessage.message}',
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            );
-                          }),
+                      leading: CircleAvatar(
+                        child: Text((remoteProfile?.name?.isEmpty ?? true)
+                            ? 'N'
+                            : remoteProfile!.name![0]),
+                      ),
+                      title: Text(
+                        (remoteProfile?.name?.trim().isEmpty ?? true)
+                            ? 'No name'
+                            : remoteProfile!.name!,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
                         ),
+                      ),
+                      subtitle: Builder(builder: (context) {
+                        MesiboMessage? lastMessage =
+                            Provider.of<MessagesProvider>(context,
+                                    listen: false)
+                                .messages
+                                .lastOrNull;
+                        if (lastMessage == null) {
+                          return Container();
+                        }
+                        return Text(
+                          '${lastMessage.isIncoming()
+                                  ? remoteProfile?.name ?? 'No name'
+                                  : 'You'}: ${lastMessage.message}',
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        );
+                      }),
+                    ),
                       ),
                     )
                   : const CircularProgressIndicator(),
